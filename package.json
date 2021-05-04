@@ -1,0 +1,19 @@
+{
+  "name": "chatfuction",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sever.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "interval-promise": "^1.4.0",
+    "nodemon": "^2.0.7",
+    "socket.io": "^2.4.1"
+  }
+}
