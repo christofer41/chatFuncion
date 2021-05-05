@@ -23,8 +23,25 @@ app.get("/allRooms", (req,res) => {
 io.on("connection", (socket) => {
     //The user joins a room
     socket.on("join room", (data) => {
-        console.log(data)
+        connectRoom(socket, data)
     })
 })
+
+
+
+
+
+function connectRoom(socket, data) {
+    socket.join(data.room.id, () => {
+        io.to(socket.id).emit("Connected", data.room.id)
+
+        socket.username = data.userName
+        socket.room = data.room
+
+        const serverMessage = "Welcome";
+        console.log(socket.username + " has connected to " + data.room.id)
+
+    })
+}
 
 server.listen(port, () => console.log(`Server is running on http://${host}:${port}`))
