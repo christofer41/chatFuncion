@@ -38,8 +38,34 @@ function connectRoom(socket, data) {
         socket.username = data.userName
         socket.room = data.room
 
-        const serverMessage = "Welcome";
+        const serverMessage = "Welcome " + socket.username + " to this chat";
         console.log(socket.username + " has connected to " + data.room.id)
+
+
+        console.log(serverMessage)
+
+        io.to(data.room.id).emit(
+            'update chat', {
+            username: socket.username,
+            message: serverMessage
+        })
+
+        socket.on("disconnect", () => {
+            io.to(data.room.id).emit(
+                "update chat", {
+                    username: socket.username,
+                    message: " has left the server :("
+                }
+            )
+        })
+
+        socket.on("message", (message) => {
+            console.log(message)
+            io.to(data.room.id).emit("update chat", {
+                username: socket.username,
+                message
+            })
+        })
 
     })
 }

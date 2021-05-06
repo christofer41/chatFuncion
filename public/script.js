@@ -3,13 +3,40 @@ let selectedRoom = "";
 let allRooms;
 
 
+
+//Our socket connections
+socket.on('Connected', renderChat)
+socket.on('update chat', renderMessage)
+
+//We collect all the rooms that have been created
 fetch("http://localhost:3000/allRooms").then((response) => {
     return response.json()
 }).then((rooms) => {
     showAllRooms(rooms)
-    
 })
 
+
+
+//Event listeners
+const messageButton = document.getElementById("message-button")
+messageButton.addEventListener('click', sendMessage)
+
+
+//What happens when we render the chat.
+function renderChat(socket) {
+     console.log("Hello");
+
+}
+//What happens when we render the message
+function renderMessage(socket) {
+    const board = document.getElementById("message-here");
+    const theMessage = document.createElement("li");
+    console.log(socket)
+    theMessage.innerHTML = socket.username + ": " + socket.message;
+    board.append(theMessage)
+}
+
+//The class for the room
 class Room {
     constructor(id, locked, password) {
         this.id = id;
@@ -20,10 +47,16 @@ class Room {
 }
 
 
-
+//We render all rooms
 function showAllRooms(rooms) {
     let lockedRoomBox = document.getElementById("private")
     let unlockedRoomBox = document.getElementById("public")
+
+    //If no rooms exist we return null
+    if (!lockedRoomBox && !unlockedRoomBox){
+        return;
+    }
+
 
 
     rooms.forEach(rooms => {
@@ -35,6 +68,7 @@ function showAllRooms(rooms) {
             room.innerText = rooms.id;
             room.className = "lockedRooms"
 
+
             roomTh.appendChild(room);
             lockedRoomBox.appendChild(roomTh);
         } else {
@@ -42,6 +76,7 @@ function showAllRooms(rooms) {
             let room = document.createElement("th");
             room.innerText = rooms.id;
             room.className = "unlockedRooms"
+
 
             roomTh.appendChild(room);
             unlockedRoomBox.appendChild(roomTh);
@@ -52,10 +87,10 @@ function showAllRooms(rooms) {
     addEvents()
 }
 
+//We give all rooms a click event
 function addEvents() {
     let lockedRoomBox = document.getElementsByClassName("lockedRooms")
     let unlockedRoomBox = document.getElementsByClassName("unlockedRooms")
-
 
 
     for (let i = 0; i < lockedRoomBox.length; i++) {
@@ -95,10 +130,8 @@ function addEvents() {
     }
 }
 
-
-function joinRoom(event) {
-    console.log("test")
-    // event.preventDefault();
+//What happens when a user joins a room
+function joinRoom() {
 
     let lockedRoomBox = document.getElementsByClassName("lockedRooms");
     let unlockedRoomBox = document.getElementsByClassName("unlockedRooms");
@@ -116,12 +149,31 @@ function joinRoom(event) {
         }
     }
 
+    if (locked = false) {
+        let userName = "Testuser"
+        let room = new Room(selectedRoom, locked);
+        socket.emit("join room", {userName, room})
+    } else {
+        alert("The room is locked right now")
+    }
 
-    let userName = "Testuser"
-    let room = new Room(selectedRoom, locked);
 
-    socket.emit("join room", {userName, room})
 
+
+}
+
+//What happens when a user sends a message
+function sendMessage(event) {
+    event.preventDefault()
+    const theInput = document.getElementById("messageInput");
+    let theMessage = theInput.value
+
+    if (theMessage === "" || theMessage === null) {
+        return;
+    } else {
+        socket.emit("message", theMessage)
+        theMessage = "";
+    }
 
 }
 
