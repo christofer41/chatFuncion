@@ -1,0 +1,34 @@
+.message-here{
+    max-height: 80vh;
+    overflow: scroll;
+    width: 80%;
+    max-width: 450px;
+    padding: 1rem;
+    border-radius: 15px;
+    background-color: whitesmoke;
+    margin: 20px auto;
+    font-size: 17px;
+    align-items: center;
+}
+.message-button{
+    height: 3.5rem;
+    width: auto;
+    font-size: larger;
+    align-items: center;
+}
+.message-input{
+    margin-bottom: .5rem;
+    padding: .8rem 1rem;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    min-width: 175px;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color: black;
+ }
+.message-div{
+    align-items: center;
+    display: flex;
+}

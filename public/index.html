@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css">
+    <link rel="stylesheet" href="styles/chat.css">
     <script src="/socket.io/socket.io.js"></script>
     <script type="module" defer src="script.js"></script>
     <title>Document</title>
 </head>
-<body>
+<body class="test">
     <div class="M-ui">
         <form class="ui">
             <h2>Hello there!<br /><span>Welcome to Chat app</span></h2>
@@ -25,6 +27,30 @@
                 </table>
             </div>
         </form>
+
+        <form class="ui">
+            <div>
+                <h1>Create a chat room</h1>
+                <input type="text" class="room-name"placeholder="room name" >
+                <button type="button" class="chat-room-public">chat room public</button>
+                <button type="button" class="chat-room-private"><a href="index.html">chat room private</a></button>
+                <button type="button" class="home">Stare page</button>
+                
+            </div>
+        </form>
+
+        <div class="message-div">
+            <ul id="message-here">
+                <h1>sadad</h1>
+            </ul>
+            <form class="message-form">
+                <input placeholder="type your message here" class="message-input" type="text" name="" id="">
+                <button type="button" class="message-button">send message</button>
+                <button type="button" class="message-button"><a href="index.html">Start page</a></button>
+            </form>
+        </div>
+
+
     </div>
 </body>
 </html>
