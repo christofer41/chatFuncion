@@ -185,4 +185,4 @@ if (frontPage.style.display != "none") {
 } else {
     frontPage.style.display = "block"
     chatPage.style.display = "none"
-}
+} 
