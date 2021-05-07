@@ -175,3 +175,14 @@ function sendMessage(event) {
 
 }
 
+
+let frontPage = document.getElementById("frontPage")
+let chatPage = document.getElementById("chatPage")
+
+if (frontPage.style.display != "none") {
+    frontPage.style.display = "none"
+    chatPage.style.display = "block"
+} else {
+    frontPage.style.display = "block"
+    chatPage.style.display = "none"
+}

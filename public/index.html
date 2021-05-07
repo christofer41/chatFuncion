@@ -28,11 +28,18 @@
         </form>
     </div>
 
+    <form class="ui">
+        <div>
+            <h1>Create a chat room</h1>
+            <input type="text" class="room-name"placeholder="room name" >
+            <button type="button" class="chat-room-public">chat room public</button>
+            <button type="button" class="chat-room-private">chat room private</button>
+            <button type="button" class="home">Stare page</button>
+            
+        </div>
+    </form>
+
     <button id="showButton">Show it</button>
-
-
-
-
     <div id="chatPage" >
         <ul id="message-here">
 
@@ -40,6 +47,7 @@
         <form class="message-form">
             <input name="messageInput" id="messageInput" cols="30" rows="10"></input>
             <button type="submit" id="message-button" class="message-button">Send</button>
+            <button type="submit" id="home" class="message-button">home</button>
         </form>
     </div>
 </body>
