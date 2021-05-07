@@ -149,13 +149,11 @@ function joinRoom() {
         }
     }
 
-    if (locked = false) {
+
         let userName = "Testuser"
         let room = new Room(selectedRoom, locked);
         socket.emit("join room", {userName, room})
-    } else {
-        alert("The room is locked right now")
-    }
+
 
 
 
