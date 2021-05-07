@@ -125,3 +125,8 @@ function joinRoom(event) {
 
 }
 
+function renderMainMenu(){
+    if(document.queryCommandValue('')){
+
+    }
+}
