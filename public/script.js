@@ -174,15 +174,21 @@ function sendMessage(event) {
     }
 
 }
+function render (){
 
 
 let frontPage = document.getElementById("frontPage")
 let chatPage = document.getElementById("chatPage")
+let create = document.getElementById("create-rooom")
 
 if (frontPage.style.display != "none") {
     frontPage.style.display = "none"
     chatPage.style.display = "block"
-} else {
+} 
+else {
     frontPage.style.display = "block"
     chatPage.style.display = "none"
 } 
+
+}
+
