@@ -184,9 +184,11 @@ let create = document.getElementById("create-rooom")
 if (frontPage.style.display != "none") {
     frontPage.style.display = "none"
     chatPage.style.display = "block"
+    create.style.display="block"
 } 
 else {
     frontPage.style.display = "block"
+    create.style.display="block"
     chatPage.style.display = "none"
 } 
 
