@@ -33,6 +33,11 @@ io.on("connection", (socket) => {
 
 function connectRoom(socket, data) {
     socket.join(data.room.id, () => {
+        // Se till att rensa upp blamd gamla events
+        // socket.leaveAll();
+        // socket.removeAllListeners('disconnect')
+        // socket.removeAllListeners('message')
+
         io.to(socket.id).emit("Connected", data.room.id)
 
         socket.username = data.userName
