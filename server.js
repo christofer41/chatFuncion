@@ -11,7 +11,7 @@ const host = process.env.HOST || 'localhost'
 
 app.use(express.static('public'))
 
-let allRooms = [
+allRooms = [
     { id: "admin", usersOnline: 0, locked: true, password: "admin"},
     { id: "public", usersOnline: 0, locked: false, password: ""}
 ];
@@ -43,6 +43,15 @@ function connectRoom(socket, data) {
         socket.username = data.userName
         socket.room = data.room
 
+        if(socket.room.locked) {
+            let samePassword = checkPassword(socket.room)
+
+
+            if(samePassword != true) {
+                return;
+            }
+        }
+
         const serverMessage = "Welcome " + socket.username + " to this chat";
         console.log(socket.username + " has connected to " + data.room.id)
 
@@ -73,6 +82,25 @@ function connectRoom(socket, data) {
         })
 
     })
+}
+
+
+
+function checkPassword(socketRoom) {
+
+
+    for (let i = 0; i < allRooms.length; i++) {
+
+        if (allRooms[i].id == socketRoom.id) {
+            if (allRooms[i].password == socketRoom.password) {
+                console.log("yes")
+                return true;
+
+            }
+        }
+    }
+
+
 }
 
 server.listen(port, () => console.log(`Server is running on http://${host}:${port}`))

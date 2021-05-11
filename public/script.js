@@ -150,6 +150,19 @@ function joinRoom() {
         }
     }
 
+
+    if (locked == false) {
+        let userName = "Testuser"
+        let room = new Room(selectedRoom, locked);
+        socket.emit("join room", {userName, room})
+    } else {
+        let userName = "lockedTestuser"
+        let password = prompt("Please enter password")
+        let room = new Room(selectedRoom, locked, password);
+        socket.emit
+        socket.emit("join room", {userName, room})
+    }
+
     let userName = 'Testuser';
     let room = new Room(selectedRoom, locked);
     socket.emit('join room', { userName, room });
@@ -168,6 +181,8 @@ function sendMessage(event) {
         theMessage = '';
     }
 }
+
+
 
 let frontPage = document.getElementById('frontPage');
 let chatPage = document.getElementById('chatPage');
