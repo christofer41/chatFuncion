@@ -149,15 +149,17 @@ function joinRoom() {
         }
     }
 
-
+    if (locked == false) {
         let userName = "Testuser"
         let room = new Room(selectedRoom, locked);
         socket.emit("join room", {userName, room})
-
-
-
-
-
+    } else {
+        let userName = "lockedTestuser"
+        let password = prompt("Please enter password")
+        let room = new Room(selectedRoom, locked, password);
+        socket.emit
+        socket.emit("join room", {userName, room})
+    }
 }
 
 //What happens when a user sends a message
@@ -175,3 +177,12 @@ function sendMessage(event) {
 
 }
 
+
+
+function handleLockedRoom() {
+    // alert("The room is locked right now")
+    console.log(selectedRoom)
+
+
+
+}
