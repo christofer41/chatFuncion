@@ -1,13 +1,13 @@
 .M-ui{
-    align-items: center;
+    justify-content: center;
+    
  }
  
  .ui{
-  
-     display: flex;
-     flex-direction: column;
-     width: 350px;
-     min-width: 225px;
+    
+     height: 20rem;
+     text-align: center;
+     max-width: 50rem;
      background-color: whitesmoke;
      border-radius: 15px;
      padding: 10px 20px 15px 20px;
@@ -24,3 +24,7 @@
      justify-content: space-evenly;
      padding: 0;
  }
+ .username-input {
+     height: 1rem;
+ }
+ 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/creatroom.css">
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/chat.css">
     <script src="/socket.io/socket.io.js"></script>
@@ -13,7 +14,7 @@
 <body>
     <div id="frontPage" class="M-ui" >
         <form class="ui">
-            <h2>Hello there!<br /><span>Welcome to Chat app</span></h2>
+            <h2 class="Titel">Hello there!<br /><span>Welcome to Chat app</span></h2>
             <input type="text" id="username-input" class="username-input" placeholder="Enter your username here">
             <button type="button" class="create-room" id="roomcreat"> Create new room</button>
             <p class="join-existing-room">or join an existing room:</p>
@@ -27,6 +28,7 @@
                 </table>
             </div>
         </form>
+      
     </div>
     <div id="create-rooom">
     <form class="ui">
@@ -42,9 +44,9 @@
     </form>
     </div>
     
-    <div id="chatPage"  >
+    <div class="main-chatpage" id="chatPage"  >
         <ul id="message-here">
-
+            
         </ul>
         <form class="message-form">
             <input name="messageInput" id="messageInput" cols="30" rows="10"></input>

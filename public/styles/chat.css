@@ -1,11 +1,22 @@
+.main-chatpage{
+    display: flex;
+    height: calc(100% - 50px);
+    width: 100%;
+    margin-bottom: 50px;
+    transition: 2s all ease;
+    justify-self: flex-start;
+    flex-direction: column;
+
+}
 .message-here{
-    max-height: 80vh;
+    max-height: 100vh;
     overflow: scroll;
-    width: 80%;
+    width: 100%;
     max-width: 450px;
     padding: 1rem;
     border-radius: 15px;
-    background-color: whitesmoke;
+    background-color: lightblue;
+    color: lightblue;
     margin: 20px auto;
     font-size: 17px;
     align-items: center;
