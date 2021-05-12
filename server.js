@@ -25,7 +25,17 @@ io.on("connection", (socket) => {
     socket.on("join room", (data) => {
         connectRoom(socket, data)
     })
+    socket.on("createRoom", (data) => {
+
+
+      let theRoom = { id: data.room.id, usersOnline: data.room.usersOnline, locked: data.room.locked, password: data.room.password}
+      allRooms.push(theRoom)
+
+      connectRoom(socket, data)
+    })
 })
+
+
 
 
 
@@ -43,17 +53,27 @@ function connectRoom(socket, data) {
         socket.username = data.userName
         socket.room = data.room
 
+
+        
+
         if(socket.room.locked) {
             let samePassword = checkPassword(socket.room)
 
 
             if(samePassword != true) {
+                io.to(data.room.id).emit("wrong password", {
+                    username: socket.username
+                })
                 return;
             }
         }
 
         const serverMessage = "Welcome " + socket.username + " to this chat";
         console.log(socket.username + " has connected to " + data.room.id)
+
+
+        console.log(socket.adapter.rooms[data.room.id].length)
+        socket.room.usersOnline = socket.adapter.rooms[data.room.id].length
 
 
         console.log(serverMessage)
@@ -81,6 +101,13 @@ function connectRoom(socket, data) {
             })
         })
 
+
+        socket.on("forceDisconnect", () => {
+            socket.disconnect();
+            return;
+        })
+
+
     })
 }
 
@@ -102,5 +129,9 @@ function checkPassword(socketRoom) {
 
 
 }
+
+
+
+
 
 server.listen(port, () => console.log(`Server is running on http://${host}:${port}`))
