@@ -1,12 +1,14 @@
 .M-ui{
     align-items: center;
+    display: flex;
+    
  }
  
  .ui{
-  
-     display: flex;
-     flex-direction: column;
-     width: 350px;
+    
+   align-items: center;
+     align-self: center;
+     height: 20rem;
      min-width: 225px;
      background-color: whitesmoke;
      border-radius: 15px;
@@ -23,4 +25,12 @@
      flex-direction: row;
      justify-content: space-evenly;
      padding: 0;
+ }
+ .username-input {
+     height: 1rem;
+ }
+ .Titel{
+     
+     align-items: center;
+     display: flex;
  }
