@@ -5,9 +5,13 @@ let allRooms;
 //Our socket connections
 socket.on('Connected', renderChat);
 socket.on('update chat', renderMessage);
+socket.on('wrong password', wrongPassword);
+
+
 
 //We collect all the rooms that have been created
-fetch('http://localhost:3000/allRooms')
+function printRooms() {
+    fetch('http://localhost:3000/allRooms')
     .then((response) => {
         return response.json();
     })
@@ -15,22 +19,31 @@ fetch('http://localhost:3000/allRooms')
         showAllRooms(rooms);
     });
 
+}
+
+
 //Event listeners
 window.addEventListener('load', () => {
+    printRooms()
+
+
     const messageButton = document.getElementById('message-button');
     messageButton.addEventListener('click', sendMessage);
 
     const homeButton = document.getElementById('home');
     homeButton.addEventListener('click', renderHome);
 
-    const chatbutton = document.getElementById('public');
-    chatbutton.addEventListener('click', renderChatpage);
-
     const creatroom = document.getElementById('roomcreat');
     creatroom.addEventListener('click', renderCreatRooms);
 
     const homeButton2 = document.getElementById('homes');
     homeButton2.addEventListener('click', renderHome);
+
+    const createPublicRoom = document.getElementById("chat-room-public");
+    createPublicRoom.addEventListener("click", createRoom);
+
+    const createprivateRoom = document.getElementById("chat-room-private");
+    createprivateRoom.addEventListener("click", createRoom);
 
      renderHome();
 });
@@ -41,6 +54,10 @@ function renderChat(socket) {
 }
 //What happens when we render the message
 function renderMessage(socket) {
+    printRooms()
+    renderChatpage()
+
+
     const board = document.getElementById('message-here');
     const theMessage = document.createElement('li');
     console.log(socket);
@@ -62,6 +79,9 @@ class Room {
 function showAllRooms(rooms) {
     let lockedRoomBox = document.getElementById('private');
     let unlockedRoomBox = document.getElementById('public');
+
+    unlockedRoomBox.innerHTML = ""
+    lockedRoomBox.innerHTML = ""
 
     //If no rooms exist we return null
     if (!lockedRoomBox && !unlockedRoomBox) {
@@ -101,15 +121,9 @@ function addEvents() {
 
     for (let i = 0; i < lockedRoomBox.length; i++) {
         lockedRoomBox[i].addEventListener('click', () => {
-            for (let y = 0; y < lockedRoomBox.length; y++) {
-                lockedRoomBox[y].style.border = 'none';
-            }
-            for (let u = 0; u < unlockedRoomBox.length; u++) {
-                unlockedRoomBox[u].style.border = 'none';
-            }
+
 
             selectedRoom = lockedRoomBox[i].innerText;
-            lockedRoomBox[i].style.border = '2px solid green';
             console.log(selectedRoom);
             joinRoom();
         });
@@ -117,15 +131,9 @@ function addEvents() {
 
     for (let i = 0; i < unlockedRoomBox.length; i++) {
         unlockedRoomBox[i].addEventListener('click', () => {
-            for (let y = 0; y < lockedRoomBox.length; y++) {
-                lockedRoomBox[y].style.border = 'none';
-            }
-            for (let u = 0; u < unlockedRoomBox.length; u++) {
-                unlockedRoomBox[u].style.border = 'none';
-            }
+
 
             selectedRoom = unlockedRoomBox[i].innerText;
-            unlockedRoomBox[i].style.border = '2px solid green';
             console.log(selectedRoom);
             joinRoom();
         });
@@ -149,23 +157,23 @@ function joinRoom() {
             locked = false;
         }
     }
+    let userName = document.getElementById("username-input").value;
 
+    if(userName == "" || userName == null) {
+        alert("Please enter a username")
+        return;
+    }
+
+    
 
     if (locked == false) {
-        let userName = "Testuser"
         let room = new Room(selectedRoom, locked);
         socket.emit("join room", {userName, room})
     } else {
-        let userName = "lockedTestuser"
         let password = prompt("Please enter password")
         let room = new Room(selectedRoom, locked, password);
-        socket.emit
         socket.emit("join room", {userName, room})
     }
-
-    let userName = 'Testuser';
-    let room = new Room(selectedRoom, locked);
-    socket.emit('join room', { userName, room });
 }
 
 //What happens when a user sends a message
@@ -183,6 +191,44 @@ function sendMessage(event) {
 }
 
 
+function wrongPassword(socket) {
+    alert("The password was incorrect!")
+}
+
+
+function createRoom(event) {
+    event.preventDefault();
+    let roomName = document.getElementById("room-name").value;
+    let roomPassword = document.getElementById("room-password").value;
+    let userName = document.getElementById("username-input").value;
+    let locked = false;
+
+
+    if (roomName == "" || roomName == null) {
+        alert("Please enter a room name")
+        return;
+    }
+
+
+
+    if (userName == "" || userName == null) {
+        alert("Please enter a username")
+        return;
+    }
+
+    if (event.target.id == "chat-room-private") {
+        if (roomPassword == "" || roomPassword == null) {
+            alert("Please enter a password")
+            return;
+        }
+        locked = true;
+    }
+
+    let room = new Room(roomName, locked, roomPassword);
+    socket.emit("createRoom", {userName, room})
+}
+
+
 
 let frontPage = document.getElementById('frontPage');
 let chatPage = document.getElementById('chatPage');
@@ -192,6 +238,11 @@ function renderHome() {
     frontPage.style.display = 'block';
     chatPage.style.display = 'none';
     create.style.display = 'none';
+
+    let data = "hello"
+
+
+    socket.emit("forceDisconnect")
 }
 function renderChatpage() {
     chatPage.style.display = 'block';

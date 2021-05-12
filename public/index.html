@@ -14,20 +14,19 @@
 <body>
     <div id="frontPage" class="M-ui" >
         <form class="ui">
-                <h2 class="Titel">Hello there!<br /><span>Welcome to Chat app</span></h2>
-                <input type="text" class="username-input" placeholder="Enter your username here">
-                <button type="button" class="create-room" id="roomcreat"> Create new room</button>
-                <p class="join-existing-room">or join an existing room:</p>
-            <form>
-                <div class="room-join">
-                    <table id="public">
-                        
-                    </table>
-                    <table id="private" >
-                    </table>
-                </div>
-            </form>
-
+            <h2 class="Titel">Hello there!<br /><span>Welcome to Chat app</span></h2>
+            <input type="text" id="username-input" class="username-input" placeholder="Enter your username here">
+            <button type="button" class="create-room" id="roomcreat"> Create new room</button>
+            <p class="join-existing-room">or join an existing room:</p>
+        </form>
+        <form>
+            <div class="room-join">
+                <table id="public">
+                    
+                </table>
+                <table id="private" >
+                </table>
+            </div>
         </form>
       
     </div>
@@ -35,10 +34,11 @@
     <form class="ui">
         <div >
             <h1>Create a chat room</h1>
-            <input type="text" class="room-name"placeholder="room name" >
-            <button type="button" class="chat-room-public">chat room public</button>
-            <button type="button" class="chat-room-private">chat room private</button>
-            <button type="button"  id="homes" class="home" >home page</button>
+            <input type="text" id="room-name" class="room-name"placeholder="room name" >
+            <input type="text" id="room-password" class="room-password"placeholder="password" >
+            <button type="button" id="chat-room-public" class="chat-room-public">chat room public</button>
+            <button type="button" id="chat-room-private" class="chat-room-private">chat room private</button>
+            <button type="button"  id="homes" class="home">home page</button>
             
         </div>
     </form>
