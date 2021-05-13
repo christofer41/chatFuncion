@@ -11,7 +11,7 @@ And then to start the server:
 
 The server will host on http://localhost:3000
 
-För admin chate är password: admin
+För admin chatt är password: admin
 
 Länk till Repo[https://github.com/christofer41/chatFuncion]
 
