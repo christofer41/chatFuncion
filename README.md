@@ -13,4 +13,6 @@ The server will host on http://localhost:3000
 
 För admin chate är password: admin
 
+Länk till Repo[https://github.com/christofer41/chatFuncion]
+
 //Christofer and Jacob
