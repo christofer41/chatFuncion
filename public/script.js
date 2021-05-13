@@ -22,9 +22,11 @@ function printRooms() {
 }
 
 
+
 //Event listeners
 window.addEventListener('load', () => {
     printRooms()
+
 
 
     const messageButton = document.getElementById('message-button');
