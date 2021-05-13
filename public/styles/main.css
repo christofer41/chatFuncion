@@ -1,16 +1,39 @@
+html, body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+
+
+.channel {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
+
 .M-ui{
     justify-content: center;
+    display: flex;
+    flex-direction: column;
     
  }
  
  .ui{
-    
-     height: 20rem;
+    align-items: center;
      text-align: center;
-     max-width: 50rem;
      background-color: whitesmoke;
      border-radius: 15px;
      padding: 10px 20px 15px 20px;
+     max-width: 50rem;
+     min-width: 5rem;
      margin: 10px;
      
  }
@@ -20,11 +43,57 @@
   }
  .room-join{
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
      justify-content: space-evenly;
+     align-items: center;
      padding: 0;
+     
  }
  .username-input {
      height: 1rem;
+     margin-bottom: .5rem;
+     padding: .8rem 1rem;
+     border-radius: 8px;
+     font-size: 1rem;
+     align-items: center;
+     
+ }
+
+
+ .unlockedRooms, .lockedRooms, .create-room {
+     border: 2px solid rgb(61, 61, 61);
+     border-radius: 16px;
+     padding-left: 50px;
+     padding-right: 50px;
+     padding-top: 15px;
+     padding-bottom: 15px;
+     text-align: center;
+     user-select: none;
+
+
+ }
+
+ .homeButtonDiv {
+     display: flex;
+     justify-content: center;
+ }
+
+ .unlockedRooms:hover, .lockedRooms:hover, .create-room:hover {
+
+
+    cursor: pointer;
+
+
+    box-shadow: 0px 10px 10px -5px rgb(48, 48, 48);
+    transform: scale(1.03);
+ }
+
+ .unlockedRooms:active, .lockedRooms:active{
+
+    box-shadow: 0px 4px 8px rgba(darken(dodgerblue, 30%));
+    transform: scale(.98);
  }
  
+p {
+    font-size: larger;
+}

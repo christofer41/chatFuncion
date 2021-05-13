@@ -27,6 +27,7 @@ function printRooms() {
 window.addEventListener('load', () => {
     printRooms()
 
+    document.addEventListener("keyup", checkIfEnter)
 
 
     const messageButton = document.getElementById('message-button');
@@ -178,11 +179,17 @@ function joinRoom() {
     }
 }
 
+function checkIfEnter(event) {
+    if (event.keyCode === 13) {
+        sendMessage()
+    }
+}
+
 //What happens when a user sends a message
 function sendMessage(event) {
-    event.preventDefault();
     const theInput = document.getElementById('messageInput');
     let theMessage = theInput.value;
+    theInput.value = "";
 
     if (theMessage === '' || theMessage === null) {
         return;
