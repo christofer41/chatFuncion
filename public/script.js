@@ -239,16 +239,19 @@ function createRoom(event) {
 
 
 
+
+
 let frontPage = document.getElementById('frontPage');
 let chatPage = document.getElementById('chatPage');
 let create = document.getElementById('create-rooom');
 
 function renderHome() {
+    document.getElementById('message-here').innerHTML = "";
+
     frontPage.style.display = 'block';
     chatPage.style.display = 'none';
     create.style.display = 'none';
 
-    let data = "hello"
 
 
     socket.emit("forceDisconnect")
