@@ -11,5 +11,6 @@ And then to start the server:
 
 The server will host on http://localhost:3000
 
+För admin chate är password: admin
 
 //Christofer and Jacob
