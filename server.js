@@ -81,8 +81,13 @@ function connectRoom(socket, data) {
         io.to(data.room.id).emit(
             'update chat', {
             username: socket.username,
-            message: serverMessage
+            message: serverMessage,
+            room: socket.room
         })
+        
+        socket.removeAllListeners("disconnect")
+        socket.removeAllListeners("message")
+        socket.removeAllListeners("forceDisconnect")
 
         socket.on("disconnect", () => {
             io.to(data.room.id).emit(
@@ -97,14 +102,20 @@ function connectRoom(socket, data) {
             console.log(message)
             io.to(data.room.id).emit("update chat", {
                 username: socket.username,
-                message
+                message,
             })
         })
 
 
         socket.on("forceDisconnect", () => {
-            socket.disconnect();
-            return;
+            socket.leaveAll();
+            io.to(data.room.id).emit(
+                "update chat", {
+                    username: socket.username,
+                    message: " has left the server :(",
+                    room: socket.room
+                }
+            )
         })
 
 
