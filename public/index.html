@@ -17,13 +17,15 @@
             <h2 class="Titel">Hello there!<br /><span>Welcome to Chat app</span></h2>
             <input type="text" id="username-input" class="username-input" placeholder="Enter your username here">
             <button type="button" class="create-room" id="roomcreat"> Create new room</button>
-            <p class="join-existing-room">or join an existing room:</p>
+            <p class="join-existing-room">Join an existing room:</p>
             <form>
             <div class="room-join">
-                <table id="public">
+                <p>Here is the public rooms</p>
+                <table id="public" class="channel">
                     
                 </table>
-                <table id="private" >
+                <p>Here is the private rooms</p>
+                <table id="private" class="channel" >
                 </table>
             </div>
         </form>
@@ -35,11 +37,11 @@
     <form class="ui">
         <div >
             <h1>Create a chat room</h1>
-            <input type="text" id="room-name" class="room-name"placeholder="room name" >
-            <input type="text" id="room-password" class="room-password"placeholder="password" >
-            <button type="button" id="chat-room-public" class="chat-room-public">chat room public</button>
-            <button type="button" id="chat-room-private" class="chat-room-private">chat room private</button>
-            <button type="button"  id="homes" class="home">home page</button>
+            <input type="text" id="room-name" class="room-name"placeholder="Room Name" >
+            <input type="text" id="room-password" class="room-password"placeholder="Password" >
+            <button type="button" id="chat-room-public" class="chat-room-public">Chat room public</button>
+            <button type="button" id="chat-room-private" class="chat-room-private">Chat room private</button>
+            <button type="button"  id="homes" class="home">Home page</button>
             
         </div>
     </form>
@@ -49,11 +51,13 @@
         <ul id="message-here">
             
         </ul>
-        <form class="message-form">
-            <input name="messageInput" id="messageInput" cols="30" rows="10"></input>
-            <button type="button" id="message-button" class="message-button">Send</button>
-            <button type="button" id="home" class="message-button">home</button>
-        </form>
+        <div class="message-form">
+            <input name="messageInput"  id="messageInput" cols="30" rows="10"></input>
+            <button type="button" id="message-button" class="messagebutton">Send</button>
+        </div>
+        <div class="homeButtonDiv">
+            <button id="home" class="message-button">home</button>
+        </div>
     </div>
 </body>
 </html>

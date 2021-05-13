@@ -1,38 +1,64 @@
 .main-chatpage{
     display: flex;
-    height: calc(100% - 50px);
-    width: 100%;
-    margin-bottom: 50px;
-    transition: 2s all ease;
-    justify-self: flex-start;
+    height: 100vh;
+    width: 100vw;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
 }
-.message-here{
-    max-height: 100vh;
+
+
+li {
+    font-size: 24px;
+    margin: 5px;
+}
+#message-here{
+
     overflow: scroll;
-    width: 100%;
-    max-width: 450px;
+    overflow-x: hidden;
+
+    max-width: 50rem;
+    height: 50%;
+
+    text-align: center;
+
+    list-style-type: none;
+
+
     padding: 1rem;
     border-radius: 15px;
-    background-color: lightblue;
-    color: lightblue;
+    background-color: rgb(233, 233, 233);
+    color: black;
     margin: 20px auto;
     font-size: 17px;
     align-items: center;
 }
+.messagebutton{
+    border: 2px solid rgb(61, 61, 61);
+    background-color: rgb(233, 233, 233);
+    border-radius: 16px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+    user-select: none;
+    margin: 0;
+}
+
 .message-button{
     height: 3.5rem;
     width: auto;
     font-size: larger;
     align-items: center;
 }
-.message-input{
-    margin-bottom: .5rem;
+#messageInput{
+    margin-right: 10px;
+    height: 1rem;
     padding: .8rem 1rem;
     border-radius: 8px;
-    font-size: 1.5rem;
-    min-width: 175px;
+    font-size: 1rem;
     align-items: center;
 }
 a{
@@ -42,4 +68,39 @@ a{
 .message-div{
     align-items: center;
     display: flex;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+#home, .home {
+
+    margin-top: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 2px solid rgb(22, 0, 0);
+    border-radius: 10px;
+}
+
+#home:hover, .home:hover, .messagebutton:hover {
+    cursor: pointer;
+    box-shadow: 0px 10px 10px -5px rgb(48, 48, 48);
+    transform: scale(1.03);
+ }
+
+#home:active, .home:active, .messagebutton:active{
+
+    box-shadow: 0px 4px 8px rgba(darken(dodgerblue, 30%));
+    transform: scale(.98);
+ }
+ 
+#home:hover {
+    border-bottom: 2px solid black;
 }
