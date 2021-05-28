@@ -7,8 +7,6 @@ socket.on('Connected', renderChat);
 socket.on('update chat', renderMessage);
 socket.on('wrong password', wrongPassword);
 
-
-
 //We collect all the rooms that have been created
 function printRooms() {
     fetch('http://localhost:3000/allRooms')
@@ -20,8 +18,6 @@ function printRooms() {
     });
 
 }
-
-
 
 //Event listeners
 window.addEventListener('load', () => {
@@ -237,10 +233,6 @@ function createRoom(event) {
     socket.emit("createRoom", {userName, room})
 }
 
-
-
-
-
 let frontPage = document.getElementById('frontPage');
 let chatPage = document.getElementById('chatPage');
 let create = document.getElementById('create-rooom');
@@ -251,8 +243,6 @@ function renderHome() {
     frontPage.style.display = 'block';
     chatPage.style.display = 'none';
     create.style.display = 'none';
-
-
 
     socket.emit("forceDisconnect")
 }

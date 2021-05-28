@@ -35,12 +35,6 @@ io.on("connection", (socket) => {
     })
 })
 
-
-
-
-
-
-
 function connectRoom(socket, data) {
     socket.join(data.room.id, () => {
         // Se till att rensa upp blamd gamla events
@@ -122,10 +116,7 @@ function connectRoom(socket, data) {
     })
 }
 
-
-
 function checkPassword(socketRoom) {
-
 
     for (let i = 0; i < allRooms.length; i++) {
 
@@ -133,16 +124,8 @@ function checkPassword(socketRoom) {
             if (allRooms[i].password == socketRoom.password) {
                 console.log("yes")
                 return true;
-
             }
         }
     }
-
-
 }
-
-
-
-
-
 server.listen(port, () => console.log(`Server is running on http://${host}:${port}`))
