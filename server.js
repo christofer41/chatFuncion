@@ -44,6 +44,8 @@ function connectRoom(socket, data) {
 
         io.to(socket.id).emit("Connected", data.room.id)
 
+        io.emit("onconnected")
+
         socket.username = data.userName
         socket.room = data.room
 
@@ -84,6 +86,31 @@ function connectRoom(socket, data) {
         socket.removeAllListeners("forceDisconnect")
 
         socket.on("disconnect", () => {
+
+            if(data.room.id !== "public" && data.room.id !== "admin") {
+                if (socket.room.usersOnline === 1) {
+                    console.log(socket.room)
+    
+    
+                    for (let i = 0; i < allRooms.length; i++) {
+                        if (allRooms[i].id == socket.room.id) {
+                            allRooms.splice(i, 1);
+                        }
+                        
+                    }
+                }
+            }
+
+
+
+            if (data.room.id != "public") {
+                console.log("meep")
+            }
+
+            
+
+
+            io.emit("onconnected")
             io.to(data.room.id).emit(
                 "update chat", {
                     username: socket.username,
@@ -102,7 +129,34 @@ function connectRoom(socket, data) {
 
 
         socket.on("forceDisconnect", () => {
-            socket.leaveAll();
+            io.emit("onconnected")
+
+            
+
+
+            // console.log(socket.room.usersOnline)
+
+
+            if(data.room.id !== "public" && data.room.id !== "admin") {
+                if (socket.adapter.rooms[data.room.id].length == 1) {
+                    console.log(socket.room)
+    
+    
+                    for (let i = 0; i < allRooms.length; i++) {
+                        if (allRooms[i].id == socket.room.id) {
+                            allRooms.splice(i, 1);
+                        }
+                        
+                    }
+                }
+            }
+
+
+
+
+            console.log(socket.adapter.rooms[data.room.id].length)
+            
+            socket.leave(data.room.id)
             io.to(data.room.id).emit(
                 "update chat", {
                     username: socket.username,

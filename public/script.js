@@ -3,7 +3,7 @@ let selectedRoom = '';
 let allRooms;
 
 //Our socket connections
-socket.on('Connected', renderChat);
+socket.on('onconnected', reloadRooms);
 socket.on('update chat', renderMessage);
 socket.on('wrong password', wrongPassword);
 
@@ -47,9 +47,10 @@ window.addEventListener('load', () => {
      renderHome();
 });
 
-//What happens when we render the chat.
-function renderChat(socket) {
+//We reload the rooms
+function reloadRooms(socket) {
     console.log('Hello');
+    printRooms()
 }
 //What happens when we render the message
 function renderMessage(socket) {
@@ -59,7 +60,7 @@ function renderMessage(socket) {
 
     const board = document.getElementById('message-here');
     const theMessage = document.createElement('li');
-    console.log(socket);
+    // console.log(socket);
     theMessage.innerHTML = socket.username + ': ' + socket.message;
     board.append(theMessage);
 }
@@ -88,7 +89,7 @@ function showAllRooms(rooms) {
     }
 
     rooms.forEach((rooms) => {
-        console.log(rooms);
+        // console.log(rooms);
 
         if (rooms.locked) {
             let roomTh = document.createElement('th');
@@ -123,7 +124,7 @@ function addEvents() {
 
 
             selectedRoom = lockedRoomBox[i].innerText;
-            console.log(selectedRoom);
+            // console.log(selectedRoom);
             joinRoom();
         });
     }
@@ -133,7 +134,7 @@ function addEvents() {
 
 
             selectedRoom = unlockedRoomBox[i].innerText;
-            console.log(selectedRoom);
+            // console.log(selectedRoom);
             joinRoom();
         });
     }
